@@ -11,6 +11,7 @@ body {
     overflow-x: hidden;
 }
 
+/* Modal */
 .modal {
     position: fixed;
     top: 0;
@@ -77,6 +78,7 @@ body {
     cursor: pointer;
 }
 
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -113,6 +115,7 @@ body {
     color: #8892a0;
 }
 
+/* Dropdown Menu */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -169,6 +172,7 @@ body {
     display: block;
 }
 
+/* Hero */
 .hero {
     min-height: 90vh;
     display: flex;
@@ -232,6 +236,14 @@ body {
     margin-bottom: 30px;
 }
 
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
 .cta-btn {
     background: #ffffff;
     color: #0a1929;
@@ -243,6 +255,7 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
     display: inline-block;
     border: 2px solid #ffffff;
+    cursor: pointer;
 }
 
 .cta-btn:hover {
@@ -250,6 +263,17 @@ body {
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
 }
 
+.branches-btn {
+    background: #0a1929;
+    color: #ffffff;
+}
+
+.branches-btn:hover {
+    background: #ffffff;
+    color: #0a1929;
+}
+
+/* Products Page Header */
 .page-header {
     background: #0a1929;
     color: #ffffff;
@@ -422,6 +446,7 @@ body {
     background: #128C7E;
 }
 
+/* About */
 .about {
     padding: 80px 50px;
     text-align: center;
@@ -441,6 +466,7 @@ body {
     color: #e0e0e0;
 }
 
+/* Contact */
 .contact {
     padding: 80px 50px;
     text-align: center;
@@ -490,6 +516,144 @@ footer {
     border-top: 3px solid #ffffff;
 }
 
+/* Branches Modal Styles */
+.branches-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 25, 41, 0.95);
+    overflow-y: auto;
+    animation: fadeIn 0.3s;
+}
+
+.branches-modal-content {
+    background: linear-gradient(135deg, #0a1929 0%, #1a2a3a 100%);
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 1200px;
+    width: 90%;
+    position: relative;
+    border: 3px solid #ffffff;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #ff6b00;
+}
+
+.branches-title {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    font-weight: 900;
+}
+
+.branches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.branch-card {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid #0a1929;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.branch-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(10, 25, 41, 0.3);
+}
+
+.branch-icon {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+}
+
+.branch-card h3 {
+    color: #0a1929;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+.branch-address {
+    color: #8892a0;
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.branch-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.branch-btn {
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95em;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.branch-btn i {
+    font-size: 1em;
+}
+
+.call-btn {
+    background: #0a1929;
+    color: #ffffff;
+}
+
+.call-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(10, 25, 41, 0.4);
+}
+
+.map-btn {
+    background: #ff6b00;
+    color: #ffffff;
+}
+
+.map-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(255, 107, 0, 0.4);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive - Tablet */
 @media (max-width: 1024px) and (min-width: 769px) {
     .hero-content h1 { font-size: 4em; }
     .navbar { padding: 20px 30px; }
@@ -498,6 +662,7 @@ footer {
     .page-header h1 { font-size: 2em; }
 }
 
+/* Responsive - Mobile */
 @media (max-width: 768px) {
     .hero-content h1 { font-size: 3em; }
     .navbar {
@@ -530,8 +695,22 @@ footer {
     }
     .page-header h1 { font-size: 1.8em; }
     .page-header { padding: 40px 20px 30px; }
+    
+    .branches-modal-content {
+        margin: 10% auto;
+        padding: 25px;
+        width: 95%;
+    }
+    .branches-title { font-size: 1.8em; margin-bottom: 25px; }
+    .branches-grid { grid-template-columns: 1fr; gap: 20px; }
+    .branch-card { padding: 25px; }
+    .branch-actions { flex-direction: column; }
+    .branch-btn { width: 100%; justify-content: center; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .cta-btn, .branches-btn { width: 80%; max-width: 300px; }
 }
 
+/* Responsive - Small Mobile */
 @media (max-width: 480px) {
     .hero-content h1 { font-size: 2.5em; }
     .modal-content { padding: 30px 20px; }
@@ -540,7 +719,8 @@ footer {
     .nav-links { gap: 10px; font-size: 0.9em; }
     .logo { font-size: 1.2em; }
     .product-card { padding: 20px; }
-    .product-img-container {
-        height: 220px;
-    }
+    .product-img-container { height: 220px; }
+    .branches-title { font-size: 1.5em; }
+    .branch-card h3 { font-size: 1.2em; }
+    .branch-address { font-size: 0.9em; }
 }
