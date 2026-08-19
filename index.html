@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joker Club | Vape Store - Zahra El Maadi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
 
+    <!-- Age Verification Modal -->
+    <div id="ageModal" class="modal">
+        <div class="modal-content">
+            <h2>🔞 Joker Club</h2>
+            <p>هل عمرك 18 سنة أو أكبر؟</p>
+            <div class="modal-buttons">
+                <button onclick="verifyAge(true)" class="btn-yes">نعم، عمري +18</button>
+                <button onclick="verifyAge(false)" class="btn-no">لا</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo"> JOKER CLUB</div>
+        <ul class="nav-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#products">المنتجات</a></li>
+            <li><a href="#about">من نحن</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="JOKER CLUB">JOKER CLUB</h1>
+            <p class="tagline">Be Unique, Be Joker 👑</p>
+            <p class="location">📍 زهراء المعادي - الشطر 13</p>
+            <a href="#products" class="cta-btn">شوف منتجاتنا</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <h2 class="section-title">منتجاتنا المميزة</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img">🌬️</div>
+                <h3>Vaporesso XROS</h3>
+                <p class="price">850 EGP</p>
+                <a href="https://wa.me/201551036733" class="order-btn">اطلب واتساب</a>
+            </div>
+            <div class="product-card">
+                <div class="product-img"></div>
+                <h3>SMOK Nord 5</h3>
+                <p class="price">950 EGP</p>
+                <a href="https://wa.me/201551036733" class="order-btn">اطلب واتساب</a>
+            </div>
+            <div class="product-card">
+                <div class="product-img"></div>
+                <h3>GeekVape Aegis</h3>
+                <p class="price">1200 EGP</p>
+                <a href="https://wa.me/201551036733" class="order-btn">اطلب واتساب</a>
+            </div>
+            <div class="product-card">
+                <div class="product-img">🍇</div>
+                <h3>E-Liquid 60ml</h3>
+                <p class="price">350 EGP</p>
+                <a href="https://wa.me/201551036733" class="order-btn">اطلب واتساب</a>
+            </div>
+            <div class="product-card">
+                <div class="product-img"></div>
+                <h3>Salt Nic 30ml</h3>
+                <p class="price">280 EGP</p>
+                <a href="https://wa.me/201551036733" class="order-btn">اطلب واتساب</a>
+            </div>
+            <div class="product-card">
+                <div class="product-img">⚡</div>
+                <h3>Coils & Pods</h3>
+                <p class="price">150 EGP</p>
+                <a href="https://wa.me/201551036733" class="order-btn">اطلب واتساب</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">من نحن</h2>
+        <p>Joker Club هو وجهتك الأولى لأفضل منتجات الفيب في مصر. فرعنا في زهراء المعادي بيوفرلك أحدث الأجهزة والنكهات الأصلية بأسعار منافسة وخدمة ممتازة.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">تواصل معنا</h2>
+        <div class="contact-info">
+            <p>📍 الشطر 13، عمارة 14، تحت الجيم - زهراء المعادي</p>
+            <p>📱 0155-1036-733</p>
+            <a href="https://wa.me/201551036733" class="whatsapp-btn"> واتساب</a>
+            <a href="https://instagram.com/jokerclub.vape" class="insta-btn">📷 إنستجرام</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Joker Club. All Rights Reserved. 🔞 +18 Only</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
