@@ -521,7 +521,7 @@ body {
     line-height: 1.6;
 }
 
-/* Brands Section */
+/* Brands Section - Infinity Scroll */
 .brands-section {
     padding: 60px 0;
     background: #f5f5f5;
@@ -531,11 +531,14 @@ body {
 .brands-marquee {
     overflow: hidden;
     white-space: nowrap;
+    position: relative;
+    width: 100%;
 }
 
 .brands-track {
     display: inline-flex;
-    animation: scroll 20s linear infinite;
+    animation: scroll 25s linear infinite;
+    width: max-content;
 }
 
 .brand-item {
@@ -547,6 +550,8 @@ body {
     font-size: 1.3em;
     font-weight: 700;
     display: inline-block;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 @keyframes scroll {
@@ -587,6 +592,7 @@ body {
     justify-content: space-between;
     align-items: center;
     transition: background 0.3s;
+    font-family: 'Cairo', sans-serif;
 }
 
 .faq-question:hover {
@@ -838,76 +844,253 @@ footer {
 
 /* Responsive - Mobile */
 @media (max-width: 768px) {
-    .hero-content h1 { font-size: 3em; }
+    .hero-content h1 { font-size: 2.5em; }
     .navbar {
         flex-direction: column;
         gap: 15px;
-        padding: 20px;
+        padding: 15px 20px;
     }
     .nav-links {
-        gap: 15px;
+        gap: 12px;
         flex-wrap: wrap;
         justify-content: center;
+        font-size: 0.95em;
     }
+    
+    /* Fix dropdown on mobile */
     .dropdown-content {
+        display: none;
         position: static;
         width: 100%;
         margin-top: 10px;
+        box-shadow: none;
+        border: 2px solid #ffffff;
+        border-radius: 10px;
     }
-    .features-section, .categories-section, .how-to-order-section, .about, .contact { padding: 50px 20px; }
-    .section-title { font-size: 2em; }
-    .tagline { font-size: 1.2em; }
-    .location { font-size: 1em; }
-    .cta-btn { padding: 12px 30px; font-size: 1em; }
-    .features-grid, .categories-grid {
-        grid-template-columns: 1fr;
+    
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+    
+    .dropdown-content a {
+        padding: 15px;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: center;
+    }
+    
+    .features-section, .categories-section, .how-to-order-section, .about, .contact { 
+        padding: 40px 20px; 
+    }
+    .section-title { 
+        font-size: 1.8em; 
+        margin-bottom: 30px;
+    }
+    
+    /* 2 Columns for Features */
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .feature-card {
+        padding: 25px 15px;
+    }
+    
+    .feature-icon {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+    
+    .feature-card h3 {
+        font-size: 1em;
+        margin-bottom: 8px;
+    }
+    
+    .feature-card p {
+        font-size: 0.85em;
+    }
+    
+    /* 2 Columns for Categories */
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .category-card {
+        padding: 25px 15px;
+    }
+    
+    .category-icon {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+    
+    .category-card h3 {
+        font-size: 1em;
+        margin-bottom: 5px;
+    }
+    
+    .category-card p {
+        font-size: 0.8em;
+        display: none;
+    }
+    
+    /* 2 Columns for Steps */
+    .steps-container {
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
+    
+    .step-card {
+        padding: 25px 15px;
+    }
+    
+    .step-number {
+        position: static;
+        transform: none;
+        margin: 0 auto 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+    
+    .step-icon {
+        font-size: 2.5em;
+        margin: 10px 0;
+    }
+    
+    .step-card h3 {
+        font-size: 1em;
+        margin: 10px 0;
+    }
+    
+    .step-card p {
+        font-size: 0.85em;
+    }
+    
+    /* Stats */
     .stats-container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        gap: 20px;
     }
-    .stat-number { font-size: 3em; }
-    .steps-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    .stat-number { 
+        font-size: 2.5em; 
     }
-    .new-arrivals-banner h2 { font-size: 1.8em; }
-    .new-arrivals-banner p { font-size: 1em; }
+    .stat-label {
+        font-size: 0.9em;
+    }
+    
+    .tagline { font-size: 1.1em; }
+    .location { font-size: 0.95em; }
+    .cta-btn { 
+        padding: 12px 25px; 
+        font-size: 0.95em; 
+    }
+    
+    .new-arrivals-banner {
+        padding: 40px 20px;
+    }
+    
+    .new-arrivals-banner h2 { 
+        font-size: 1.5em; 
+    }
+    
+    .new-arrivals-banner p { 
+        font-size: 0.95em; 
+    }
+    
+    .banner-btn {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+    
     .brands-section { padding: 40px 0; }
     .brand-item {
         padding: 15px 30px;
         font-size: 1.1em;
+        margin: 0 10px;
     }
-    .faq-section { padding: 50px 20px; }
-    .faq-question { font-size: 1em; padding: 20px; }
+    
+    .faq-section { padding: 40px 20px; }
+    .faq-question { 
+        font-size: 0.95em; 
+        padding: 18px; 
+    }
+    .faq-answer p {
+        font-size: 0.9em;
+        padding: 15px;
+    }
+    
     .branches-modal-content {
         margin: 10% auto;
         padding: 25px;
         width: 95%;
     }
-    .branches-title { font-size: 1.8em; margin-bottom: 25px; }
-    .branches-grid { grid-template-columns: 1fr; gap: 20px; }
-    .branch-card { padding: 25px; }
+    .branches-title { 
+        font-size: 1.6em; 
+        margin-bottom: 25px; 
+    }
+    .branches-grid { 
+        grid-template-columns: 1fr; 
+        gap: 20px; 
+    }
+    .branch-card { padding: 20px; }
     .branch-actions { flex-direction: column; }
-    .branch-btn { width: 100%; justify-content: center; }
-    .hero-buttons { flex-direction: column; align-items: center; }
-    .cta-btn, .branches-btn { width: 80%; max-width: 300px; }
+    .branch-btn { 
+        width: 100%; 
+        justify-content: center;
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .hero-buttons { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 15px;
+    }
+    .cta-btn, .branches-btn { 
+        width: 90%; 
+        max-width: 300px; 
+    }
 }
 
 /* Responsive - Small Mobile */
 @media (max-width: 480px) {
-    .hero-content h1 { font-size: 2.5em; }
+    .hero-content h1 { font-size: 2em; }
     .modal-content { padding: 30px 20px; }
     .modal-content h2 { font-size: 1.5em; }
     .modal-buttons { flex-direction: column; }
-    .nav-links { gap: 10px; font-size: 0.9em; }
+    .nav-links { gap: 10px; font-size: 0.85em; }
     .logo { font-size: 1.2em; }
-    .section-title { font-size: 1.8em; }
-    .stat-number { font-size: 2.5em; }
-    .new-arrivals-banner h2 { font-size: 1.5em; }
+    .section-title { font-size: 1.6em; }
+    .stat-number { font-size: 2em; }
+    .new-arrivals-banner h2 { font-size: 1.3em; }
     .brand-item {
         padding: 12px 25px;
         font-size: 1em;
+    }
+    
+    .features-grid,
+    .categories-grid,
+    .steps-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .feature-card,
+    .category-card,
+    .step-card {
+        padding: 20px 10px;
+    }
+    
+    .feature-icon,
+    .category-icon,
+    .step-icon {
+        font-size: 2em;
+    }
+    
+    .feature-card h3,
+    .category-card h3,
+    .step-card h3 {
+        font-size: 0.9em;
     }
 }
