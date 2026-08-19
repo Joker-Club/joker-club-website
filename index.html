@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joker Club | Vape Store - Zahra El Maadi</title>
+    <title>Joker Club | Vape Store</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -21,21 +22,94 @@
         </div>
     </div>
 
+    <!-- Branches Modal -->
+    <div id="branchesModal" class="branches-modal">
+        <div class="branches-modal-content">
+            <span class="close-modal" onclick="closeBranchesModal()">&times;</span>
+            <h2 class="branches-title">📍 فروع Joker Club</h2>
+            
+            <div class="branches-grid">
+                <!-- فرع شبرا -->
+                <div class="branch-card">
+                    <div class="branch-icon">🏪</div>
+                    <h3>شبرا</h3>
+                    <p class="branch-address">٢٣٧ شارع شبرا بجوار فرع اتصالات وكشري الرحماني و امام خير زمان</p>
+                    <div class="branch-actions">
+                        <a href="tel:01228351315" class="branch-btn call-btn"><i class="fas fa-phone"></i> اتصل بنا</a>
+                        <a href="https://maps.app.goo.gl/v3Q2xBdCh3ryHB6m6?g_st=ic" target="_blank" class="branch-btn map-btn"><i class="fas fa-map-marker-alt"></i> العنوان</a>
+                    </div>
+                </div>
+
+                <!-- فرع زهراء المعادي -->
+                <div class="branch-card">
+                    <div class="branch-icon">🏪</div>
+                    <h3>زهراء المعادي</h3>
+                    <p class="branch-address">H2O - الشطر ١٣ عماره ١٤ تحت الجيم</p>
+                    <div class="branch-actions">
+                        <a href="tel:01551036733" class="branch-btn call-btn"><i class="fas fa-phone"></i> اتصل بنا</a>
+                        <a href="https://maps.app.goo.gl/MtiH2ZCiCEtZHNVF9?g_st=ic" target="_blank" class="branch-btn map-btn"><i class="fas fa-map-marker-alt"></i> العنوان</a>
+                    </div>
+                </div>
+
+                <!-- فرع اكتوبر -->
+                <div class="branch-card">
+                    <div class="branch-icon">🏪</div>
+                    <h3>اكتوبر</h3>
+                    <p class="branch-address">المحور المركزي، الحصري، امام حلواني العبد</p>
+                    <div class="branch-actions">
+                        <a href="tel:01554100203" class="branch-btn call-btn"><i class="fas fa-phone"></i> اتصل بنا</a>
+                        <a href="https://goo.gl/maps/WeiLghNNv5bEUUneA" target="_blank" class="branch-btn map-btn"><i class="fas fa-map-marker-alt"></i> العنوان</a>
+                    </div>
+                </div>
+
+                <!-- فرع القاهرة الجديدة -->
+                <div class="branch-card">
+                    <div class="branch-icon">🏪</div>
+                    <h3>القاهرة الجديدة</h3>
+                    <p class="branch-address">جيت واي مول فوق باندا ماركت</p>
+                    <div class="branch-actions">
+                        <a href="tel:01554100620" class="branch-btn call-btn"><i class="fas fa-phone"></i> اتصل بنا</a>
+                        <a href="https://goo.gl/maps/MAoSBxCvdxWmpFJy6" target="_blank" class="branch-btn map-btn"><i class="fas fa-map-marker-alt"></i> العنوان</a>
+                    </div>
+                </div>
+
+                <!-- فرع فيصل -->
+                <div class="branch-card">
+                    <div class="branch-icon">🏪</div>
+                    <h3>فيصل</h3>
+                    <p class="branch-address">٢٥١ محطة التعاون، امام البنزينة، بجوار فودافون</p>
+                    <div class="branch-actions">
+                        <a href="tel:01555121203" class="branch-btn call-btn"><i class="fas fa-phone"></i> اتصل بنا</a>
+                        <a href="https://goo.gl/maps/VSZw2BW2rQwwvcyt8" target="_blank" class="branch-btn map-btn"><i class="fas fa-map-marker-alt"></i> العنوان</a>
+                    </div>
+                </div>
+
+                <!-- فرع الهرم -->
+                <div class="branch-card">
+                    <div class="branch-icon">🏪</div>
+                    <h3>الهرم</h3>
+                    <p class="branch-address">٧١ شارع خاتم المرسلين امام ستوديو الاهرام</p>
+                    <div class="branch-actions">
+                        <a href="tel:01555121204" class="branch-btn call-btn"><i class="fas fa-phone"></i> اتصل بنا</a>
+                        <a href="https://goo.gl/maps/tvuB16QXbtWNnM557" target="_blank" class="branch-btn map-btn"><i class="fas fa-map-marker-alt"></i> العنوان</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">JOKER CLUB</div>
         <ul class="nav-links">
             <li><a href="#home">الرئيسية</a></li>
             <li class="dropdown">
-                <a href="#" class="dropbtn">المنتجات ▼</a>
+                <a href="products.html" class="dropbtn">المنتجات ▼</a>
                 <div class="dropdown-content">
                     <a href="products.html#pod-devices">Pod Devices</a>
-                    <a href="products.html#dispo">Dispo</a>
                     <a href="products.html#liquids">Liquids</a>
-                    <a href="products.html#coils">Coils & Cartridges</a>
                     <a href="products.html#tanks">Tanks</a>
                     <a href="products.html#full-kit">Full Kit</a>
-                    <a href="products.html#mod-devices">Mod Devices</a>
                 </div>
             </li>
             <li><a href="#about">من نحن</a></li>
@@ -49,14 +123,19 @@
             <h1>JOKER CLUB</h1>
             <p class="tagline">Be Unique, Be Joker 👑</p>
             <p class="location">📍 زهراء المعادي - الشطر 13</p>
-            <a href="products.html" class="cta-btn">شوف منتجاتنا</a>
+            <div class="hero-buttons">
+                <a href="products.html" class="cta-btn">شوف منتجاتنا</a>
+                <button onclick="openBranchesModal()" class="cta-btn branches-btn">
+                    <i class="fas fa-map-marker-alt"></i> فروعنا
+                </button>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <h2 class="section-title">من نحن</h2>
-        <p>Joker Club هو وجهتك الأولى لأفضل منتجات الفيب في مصر. فرعنا في زهراء المعادي بيوفرلك أحدث الأجهزة والنكهات الأصلية بأسعار منافسة وخدمة ممتازة.</p>
+        <p>Joker Club هو وجهتك الأولى لأفضل منتجات الفيب في مصر. فروعنا المنتشرة في القاهرة والجيزة بتوفرلك أحدث الأجهزة والنكهات الأصلية بأسعار منافسة وخدمة ممتازة.</p>
     </section>
 
     <!-- Contact Section -->
@@ -65,8 +144,8 @@
         <div class="contact-info">
             <p>📍 الشطر 13، عمارة 14، تحت الجيم - زهراء المعادي</p>
             <p>📱 0155-1036-733</p>
-            <a href="https://wa.me/201551036733" class="whatsapp-btn">💬 واتساب</a>
-            <a href="https://instagram.com/jokerclub.vape" class="insta-btn"> إنستجرام</a>
+            <a href="https://wa.me/201226119761" class="whatsapp-btn" target="_blank">💬 واتساب</a>
+            <a href="https://instagram.com/jokerclub.vape" class="insta-btn" target="_blank">📷 إنستجرام</a>
         </div>
     </section>
 
