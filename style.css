@@ -11,7 +11,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Modal */
 .modal {
     position: fixed;
     top: 0;
@@ -78,7 +77,6 @@ body {
     cursor: pointer;
 }
 
-/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -115,7 +113,6 @@ body {
     color: #8892a0;
 }
 
-/* Dropdown Menu */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -172,7 +169,6 @@ body {
     display: block;
 }
 
-/* Hero */
 .hero {
     min-height: 90vh;
     display: flex;
@@ -254,7 +250,24 @@ body {
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
 }
 
-/* Products */
+.page-header {
+    background: #0a1929;
+    color: #ffffff;
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+
+.page-header h1 {
+    font-size: 2.5em;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: #8892a0;
+    font-size: 1.1em;
+}
+
 .products {
     padding: 80px 50px;
     background: #ffffff;
@@ -339,7 +352,6 @@ body {
     color: #ffffff;
 }
 
-/* Liquid Cards Styling */
 .liquid-card {
     background: #ffffff;
     border: 2px solid #0a1929;
@@ -410,7 +422,6 @@ body {
     background: #128C7E;
 }
 
-/* About */
 .about {
     padding: 80px 50px;
     text-align: center;
@@ -430,7 +441,6 @@ body {
     color: #e0e0e0;
 }
 
-/* Contact */
 .contact {
     padding: 80px 50px;
     text-align: center;
@@ -472,7 +482,6 @@ body {
     background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
 
-/* Footer */
 footer {
     background: #0a1929;
     text-align: center;
@@ -481,15 +490,14 @@ footer {
     border-top: 3px solid #ffffff;
 }
 
-/* Responsive - Tablet */
 @media (max-width: 1024px) and (min-width: 769px) {
     .hero-content h1 { font-size: 4em; }
     .navbar { padding: 20px 30px; }
     .nav-links { gap: 20px; }
     .products, .about, .contact { padding: 60px 30px; }
+    .page-header h1 { font-size: 2em; }
 }
 
-/* Responsive - Mobile */
 @media (max-width: 768px) {
     .hero-content h1 { font-size: 3em; }
     .navbar {
@@ -520,9 +528,10 @@ footer {
     .product-img-container {
         height: 250px;
     }
+    .page-header h1 { font-size: 1.8em; }
+    .page-header { padding: 40px 20px 30px; }
 }
 
-/* Responsive - Small Mobile */
 @media (max-width: 480px) {
     .hero-content h1 { font-size: 2.5em; }
     .modal-content { padding: 30px 20px; }
