@@ -78,7 +78,7 @@ body {
     cursor: pointer;
 }
 
-/* Navbar - Navy Blue */
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -101,6 +101,7 @@ body {
     display: flex;
     list-style: none;
     gap: 30px;
+    align-items: center;
 }
 
 .nav-links a {
@@ -114,7 +115,53 @@ body {
     color: #8892a0;
 }
 
-/* Hero - Navy Blue + صورة خلفية */
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    min-width: 250px;
+    box-shadow: 0 8px 16px rgba(10, 25, 41, 0.3);
+    border-radius: 10px;
+    z-index: 200;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #0a1929;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background: #0a1929;
+    color: #ffffff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Hero */
 .hero {
     min-height: 90vh;
     display: flex;
@@ -196,7 +243,7 @@ body {
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
 }
 
-/* Products - خلفية بيضاء (Mix) */
+/* Products */
 .products {
     padding: 80px 50px;
     background: #ffffff;
@@ -207,6 +254,19 @@ body {
     font-size: 2.5em;
     color: #0a1929;
     margin-bottom: 50px;
+    font-weight: 900;
+}
+
+.product-category {
+    margin-bottom: 60px;
+}
+
+.category-title {
+    font-size: 2em;
+    color: #0a1929;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #0a1929;
     font-weight: 900;
 }
 
@@ -268,7 +328,7 @@ body {
     color: #ffffff;
 }
 
-/* About - خلفية Navy Blue (Mix) */
+/* About */
 .about {
     padding: 80px 50px;
     text-align: center;
@@ -288,7 +348,7 @@ body {
     color: #e0e0e0;
 }
 
-/* Contact - خلفية بيضاء (Mix) */
+/* Contact */
 .contact {
     padding: 80px 50px;
     text-align: center;
@@ -330,7 +390,7 @@ body {
     background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
 
-/* Footer - Navy Blue */
+/* Footer */
 footer {
     background: #0a1929;
     text-align: center;
@@ -339,7 +399,7 @@ footer {
     border-top: 3px solid #ffffff;
 }
 
-/* ===== Responsive - Tablet ===== */
+/* Responsive - Tablet */
 @media (max-width: 1024px) and (min-width: 769px) {
     .hero-content h1 { font-size: 4em; }
     .navbar { padding: 20px 30px; }
@@ -347,7 +407,7 @@ footer {
     .products, .about, .contact { padding: 60px 30px; }
 }
 
-/* ===== Responsive - Mobile ===== */
+/* Responsive - Mobile */
 @media (max-width: 768px) {
     .hero-content h1 { font-size: 3em; }
     .navbar {
@@ -360,8 +420,14 @@ footer {
         flex-wrap: wrap;
         justify-content: center;
     }
+    .dropdown-content {
+        position: static;
+        width: 100%;
+        margin-top: 10px;
+    }
     .products, .about, .contact { padding: 50px 20px; }
     .section-title { font-size: 2em; }
+    .category-title { font-size: 1.5em; }
     .tagline { font-size: 1.2em; }
     .location { font-size: 1em; }
     .cta-btn { padding: 12px 30px; font-size: 1em; }
@@ -371,7 +437,7 @@ footer {
     }
 }
 
-/* ===== Responsive - Small Mobile ===== */
+/* Responsive - Small Mobile */
 @media (max-width: 480px) {
     .hero-content h1 { font-size: 2.5em; }
     .modal-content { padding: 30px 20px; }
