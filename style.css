@@ -115,7 +115,7 @@ body {
     color: #8892a0;
 }
 
-/* Dropdown Menu - الإصلاح هنا */
+/* Dropdown Menu */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -140,7 +140,6 @@ body {
     overflow: hidden;
 }
 
-/* الجسر الشفاف اللي بيمنع الـ dropdown من الاختفاء */
 .dropdown-content::before {
     content: '';
     position: absolute;
@@ -340,6 +339,77 @@ body {
     color: #ffffff;
 }
 
+/* Liquid Cards Styling */
+.liquid-card {
+    background: #ffffff;
+    border: 2px solid #0a1929;
+    padding: 20px;
+}
+
+.liquid-card h3 {
+    color: #0a1929;
+    font-size: 1.4em;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.product-img-container {
+    width: 100%;
+    height: 300px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+}
+
+.product-brand {
+    color: #8892a0;
+    font-size: 0.95em;
+    margin-bottom: 5px;
+}
+
+.product-nic {
+    color: #0a1929;
+    font-weight: 900;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    background: #ff6b00;
+    color: white;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.whatsapp-order {
+    background: #25D366;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    display: block;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.whatsapp-order:hover {
+    transform: scale(1.05);
+    background: #128C7E;
+}
+
 /* About */
 .about {
     padding: 80px 50px;
@@ -447,6 +517,9 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
     }
+    .product-img-container {
+        height: 250px;
+    }
 }
 
 /* Responsive - Small Mobile */
@@ -458,4 +531,7 @@ footer {
     .nav-links { gap: 10px; font-size: 0.9em; }
     .logo { font-size: 1.2em; }
     .product-card { padding: 20px; }
+    .product-img-container {
+        height: 220px;
+    }
 }
