@@ -19,9 +19,12 @@ window.addEventListener('load', () => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
@@ -34,4 +37,23 @@ if (dropdown) {
             this.classList.toggle('active');
         }
     });
+}
+
+// Branches Modal Functions
+function openBranchesModal() {
+    document.getElementById('branchesModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBranchesModal() {
+    document.getElementById('branchesModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('branchesModal');
+    if (event.target == modal) {
+        closeBranchesModal();
+    }
 }
