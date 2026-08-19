@@ -19,6 +19,9 @@ window.addEventListener('load', () => {
     
     // Initialize FAQ
     initFAQ();
+    
+    // Initialize mobile dropdown
+    initMobileDropdown();
 });
 
 // Animate Statistics
@@ -27,8 +30,8 @@ function animateStats() {
     
     statNumbers.forEach(stat => {
         const target = parseInt(stat.getAttribute('data-target'));
-        const duration = 2000; // 2 seconds
-        const increment = target / (duration / 16); // 60fps
+        const duration = 2000;
+        const increment = target / (duration / 16);
         let current = 0;
         
         const updateStat = () => {
@@ -41,7 +44,6 @@ function animateStats() {
             }
         };
         
-        // Trigger animation when element is in viewport
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -65,12 +67,10 @@ function initFAQ() {
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
             
-            // Close all items
             faqItems.forEach(faq => {
                 faq.classList.remove('active');
             });
             
-            // Open clicked item if it wasn't active
             if (!isActive) {
                 item.classList.add('active');
             }
@@ -78,29 +78,44 @@ function initFAQ() {
     });
 }
 
+// Mobile Dropdown Toggle
+function initMobileDropdown() {
+    const dropdown = document.getElementById('productsDropdown');
+    const dropbtn = dropdown ? dropdown.querySelector('.dropbtn') : null;
+    
+    if (dropdown && dropbtn) {
+        dropbtn.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdown.classList.toggle('active');
+            }
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+}
+
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
+        const target = document.querySelector(href);
         if (target) {
+            e.preventDefault();
             target.scrollIntoView({
                 behavior: 'smooth'
             });
         }
     });
 });
-
-// Mobile dropdown toggle
-const dropdown = document.querySelector('.dropdown');
-if (dropdown) {
-    dropdown.addEventListener('click', function(e) {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            this.classList.toggle('active');
-        }
-    });
-}
 
 // Branches Modal Functions
 function openBranchesModal() {
