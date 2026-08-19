@@ -13,7 +13,70 @@ window.addEventListener('load', () => {
     if (localStorage.getItem('ageVerified') === 'true') {
         document.getElementById('ageModal').style.display = 'none';
     }
+    
+    // Animate statistics
+    animateStats();
+    
+    // Initialize FAQ
+    initFAQ();
 });
+
+// Animate Statistics
+function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    statNumbers.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const updateStat = () => {
+            current += increment;
+            if (current < target) {
+                stat.textContent = Math.floor(current);
+                requestAnimationFrame(updateStat);
+            } else {
+                stat.textContent = target;
+            }
+        };
+        
+        // Trigger animation when element is in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateStat();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        
+        observer.observe(stat);
+    });
+}
+
+// FAQ Toggle
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all items
+            faqItems.forEach(faq => {
+                faq.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+}
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
