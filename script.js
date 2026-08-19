@@ -24,3 +24,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
+// Mobile dropdown toggle
+const dropdown = document.querySelector('.dropdown');
+if (dropdown) {
+    dropdown.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            this.classList.toggle('active');
+        }
+    });
+}
