@@ -17,13 +17,13 @@
             <li class="dropdown">
                 <a href="#" class="dropbtn">المنتجات ▼</a>
                 <div class="dropdown-content">
-                    <a href="#pod-devices">Pod Devices</a>
-                    <a href="#dispo">Dispo</a>
-                    <a href="#liquids">Liquids</a>
-                    <a href="#coils">Coils & Cartridges</a>
-                    <a href="#tanks">Tanks</a>
-                    <a href="#full-kit">Full Kit</a>
-                    <a href="#mod-devices">Mod Devices</a>
+                    <a href="#" onclick="showCategory('pod-devices')">Pod Devices</a>
+                    <a href="#" onclick="showCategory('dispo')">Dispo</a>
+                    <a href="#" onclick="showCategory('liquids')">Liquids</a>
+                    <a href="#" onclick="showCategory('coils')">Coils & Cartridges</a>
+                    <a href="#" onclick="showCategory('tanks')">Tanks</a>
+                    <a href="#" onclick="showCategory('full-kit')">Full Kit</a>
+                    <a href="#" onclick="showCategory('mod-devices')">Mod Devices</a>
                 </div>
             </li>
             <li><a href="index.html#about">من نحن</a></li>
@@ -31,16 +31,21 @@
         </ul>
     </nav>
 
+    <!-- Page Title -->
+    <div class="page-header">
+        <h1 id="page-title">اختر قسم المنتجات</h1>
+        <p>اختر القسم من القائمة فوق عشان تشوف المنتجات</p>
+    </div>
+
     <!-- Products Section -->
     <section id="products" class="products">
-        <h2 class="section-title">منتجاتنا المميزة</h2>
-        
+
         <!-- Pod Devices Section -->
-        <div id="pod-devices" class="product-category">
+        <div id="pod-devices" class="product-category" style="display: none;">
             <h3 class="category-title">Pod Devices</h3>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-img">🌬️</div>
+                    <div class="product-img">️</div>
                     <h3>Vaporesso XROS</h3>
                     <p class="price">850 EGP</p>
                     <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Vaporesso XROS" class="order-btn" target="_blank">اطلب واتساب</a>
@@ -55,7 +60,7 @@
         </div>
 
         <!-- Dispo Section -->
-        <div id="dispo" class="product-category">
+        <div id="dispo" class="product-category" style="display: none;">
             <h3 class="category-title">Dispo</h3>
             <div class="products-grid">
                 <div class="product-card">
@@ -67,12 +72,11 @@
             </div>
         </div>
 
-        <!-- Liquids Section - المنتجات الحقيقية -->
-        <div id="liquids" class="product-category">
+        <!-- Liquids Section -->
+        <div id="liquids" class="product-category" style="display: none;">
             <h3 class="category-title">Liquids</h3>
             <div class="products-grid">
                 
-                <!-- Liquid 1: Whirling Dervish -->
                 <div class="product-card liquid-card">
                     <div class="product-img-container">
                         <img src="liq1.png" alt="Whirling Dervish 12 NIC" class="product-image">
@@ -83,7 +87,6 @@
                     <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Whirling Dervish 12 NIC" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
                 </div>
 
-                <!-- Liquid 2: Go Nuts -->
                 <div class="product-card liquid-card">
                     <div class="product-img-container">
                         <img src="liq2.png" alt="Go Nuts 12 NIC" class="product-image">
@@ -94,7 +97,6 @@
                     <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Go Nuts 12 NIC" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
                 </div>
 
-                <!-- Liquid 3: Banana Pudding -->
                 <div class="product-card liquid-card">
                     <div class="product-img-container">
                         <img src="liq3.png" alt="Banana Pudding 12MG" class="product-image">
@@ -109,7 +111,7 @@
         </div>
 
         <!-- Coils & Cartridges Section -->
-        <div id="coils" class="product-category">
+        <div id="coils" class="product-category" style="display: none;">
             <h3 class="category-title">Coils & Cartridges</h3>
             <div class="products-grid">
                 <div class="product-card">
@@ -122,11 +124,11 @@
         </div>
 
         <!-- Tanks Section -->
-        <div id="tanks" class="product-category">
+        <div id="tanks" class="product-category" style="display: none;">
             <h3 class="category-title">Tanks</h3>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-img"></div>
+                    <div class="product-img">⚡</div>
                     <h3>Sub-Ohm Tank</h3>
                     <p class="price">650 EGP</p>
                     <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Sub-Ohm Tank" class="order-btn" target="_blank">اطلب واتساب</a>
@@ -135,7 +137,7 @@
         </div>
 
         <!-- Full Kit Section -->
-        <div id="full-kit" class="product-category">
+        <div id="full-kit" class="product-category" style="display: none;">
             <h3 class="category-title">Full Kit</h3>
             <div class="products-grid">
                 <div class="product-card">
@@ -148,7 +150,7 @@
         </div>
 
         <!-- Mod Devices Section -->
-        <div id="mod-devices" class="product-category">
+        <div id="mod-devices" class="product-category" style="display: none;">
             <h3 class="category-title">Mod Devices</h3>
             <div class="products-grid">
                 <div class="product-card">
@@ -159,6 +161,7 @@
                 </div>
             </div>
         </div>
+
     </section>
 
     <footer>
@@ -166,5 +169,42 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        function showCategory(categoryId) {
+            const allCategories = document.querySelectorAll('.product-category');
+            allCategories.forEach(cat => {
+                cat.style.display = 'none';
+            });
+
+            const selectedCategory = document.getElementById(categoryId);
+            if (selectedCategory) {
+                selectedCategory.style.display = 'block';
+            }
+
+            const categoryNames = {
+                'pod-devices': 'Pod Devices',
+                'dispo': 'Dispo',
+                'liquids': 'Liquids',
+                'coils': 'Coils & Cartridges',
+                'tanks': 'Tanks',
+                'full-kit': 'Full Kit',
+                'mod-devices': 'Mod Devices'
+            };
+
+            document.getElementById('page-title').textContent = categoryNames[categoryId] || 'منتجاتنا';
+
+            const dropdown = document.querySelector('.dropdown');
+            if (dropdown) {
+                dropdown.classList.remove('active');
+            }
+        }
+
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showCategory(hash);
+            }
+        });
+    </script>
 </body>
 </html>
