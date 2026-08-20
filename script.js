@@ -9,7 +9,7 @@ function verifyAge(isAdult) {
 }
 
 // Check if already verified
-window.addEventListener('load', () => {
+window.addEventListener('load', function() {
     if (localStorage.getItem('ageVerified') === 'true') {
         const ageModal = document.getElementById('ageModal');
         if (ageModal) {
@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
 // Show Category Function
 function showCategory(categoryId) {
     const allCategories = document.querySelectorAll('.product-category');
-    allCategories.forEach(cat => {
+    allCategories.forEach(function(cat) {
         cat.style.display = 'none';
     });
 
@@ -74,7 +74,7 @@ function searchProducts(searchInputId, categoryId) {
     
     let visibleCount = 0;
     
-    products.forEach(product => {
+    products.forEach(function(product) {
         const productName = product.getAttribute('data-name');
         const productTitle = product.querySelector('h3') ? product.querySelector('h3').textContent.toLowerCase() : '';
         const productBrand = product.querySelector('.product-brand') ? product.querySelector('.product-brand').textContent.toLowerCase() : '';
@@ -95,7 +95,7 @@ function searchProducts(searchInputId, categoryId) {
     if (visibleCount === 0 && searchTerm !== '') {
         const noResults = document.createElement('div');
         noResults.className = 'no-results';
-        noResults.textContent = ' مفيش منتجات مطابقة للبحث';
+        noResults.textContent = '🔍 مفيش منتجات مطابقة للبحث';
         grid.appendChild(noResults);
     }
 }
@@ -103,30 +103,32 @@ function searchProducts(searchInputId, categoryId) {
 // Clear All Searches
 function clearAllSearches() {
     const searchInputs = document.querySelectorAll('.search-input');
-    searchInputs.forEach(input => {
+    searchInputs.forEach(function(input) {
         input.value = '';
     });
     
     const allProducts = document.querySelectorAll('.product-card');
-    allProducts.forEach(product => {
+    allProducts.forEach(function(product) {
         product.style.display = 'block';
     });
     
     const noResultsMessages = document.querySelectorAll('.no-results');
-    noResultsMessages.forEach(msg => msg.remove());
+    noResultsMessages.forEach(function(msg) {
+        msg.remove();
+    });
 }
 
 // Animate Statistics
 function animateStats() {
     const statNumbers = document.querySelectorAll('.stat-number');
     
-    statNumbers.forEach(stat => {
+    statNumbers.forEach(function(stat) {
         const target = parseInt(stat.getAttribute('data-target'));
         const duration = 2000;
         const increment = target / (duration / 16);
         let current = 0;
         
-        const updateStat = () => {
+        const updateStat = function() {
             current += increment;
             if (current < target) {
                 stat.textContent = Math.floor(current);
@@ -136,8 +138,8 @@ function animateStats() {
             }
         };
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     updateStat();
                     observer.unobserve(entry.target);
@@ -153,14 +155,14 @@ function animateStats() {
 function initFAQ() {
     const faqItems = document.querySelectorAll('.faq-item');
     
-    faqItems.forEach(item => {
+    faqItems.forEach(function(item) {
         const question = item.querySelector('.faq-question');
         
         if (question) {
-            question.addEventListener('click', () => {
+            question.addEventListener('click', function() {
                 const isActive = item.classList.contains('active');
                 
-                faqItems.forEach(faq => {
+                faqItems.forEach(function(faq) {
                     faq.classList.remove('active');
                 });
                 
@@ -195,8 +197,8 @@ function initMobileDropdown() {
 }
 
 // Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href === '#' || href === '#') return;
         
