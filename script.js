@@ -17,16 +17,10 @@ window.addEventListener('load', () => {
         }
     }
     
-    // Animate statistics
     animateStats();
-    
-    // Initialize FAQ
     initFAQ();
-    
-    // Initialize mobile dropdown
     initMobileDropdown();
     
-    // Check URL hash on page load (for products page)
     const hash = window.location.hash.substring(1);
     if (hash) {
         const category = document.getElementById(hash);
@@ -36,7 +30,7 @@ window.addEventListener('load', () => {
     }
 });
 
-// Show Category Function (for products page)
+// Show Category Function
 function showCategory(categoryId) {
     const allCategories = document.querySelectorAll('.product-category');
     allCategories.forEach(cat => {
@@ -233,7 +227,6 @@ function closeBranchesModal() {
     }
 }
 
-// Close modal when clicking outside
 window.onclick = function(event) {
     const modal = document.getElementById('branchesModal');
     if (event.target == modal) {
