@@ -230,6 +230,13 @@ body {
     margin-bottom: 15px;
 }
 
+.hero-subtitle {
+    font-size: 1.2em;
+    color: #8892a0;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
 .location {
     font-size: 1.2em;
     color: #ffffff;
@@ -419,8 +426,9 @@ body {
     box-shadow: 0 20px 40px rgba(10, 25, 41, 0.2);
 }
 
-.category-icon {
-    font-size: 4em;
+.category-icon-svg {
+    width: 100px;
+    height: 120px;
     margin-bottom: 20px;
 }
 
@@ -521,7 +529,7 @@ body {
     line-height: 1.6;
 }
 
-/* Brands Section - Infinity Scroll */
+/* Brands Section */
 .brands-section {
     padding: 60px 0;
     background: #f5f5f5;
@@ -1045,6 +1053,7 @@ footer {
 /* Responsive - Mobile */
 @media (max-width: 768px) {
     .hero-content h1 { font-size: 2.5em; }
+    .hero-subtitle { font-size: 1em; }
     .navbar {
         flex-direction: column;
         gap: 15px;
@@ -1057,7 +1066,6 @@ footer {
         font-size: 0.95em;
     }
     
-    /* Fix dropdown on mobile */
     .dropdown-content {
         display: none;
         position: static;
@@ -1086,7 +1094,6 @@ footer {
         margin-bottom: 30px;
     }
     
-    /* 2 Columns for Features */
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -1110,7 +1117,6 @@ footer {
         font-size: 0.85em;
     }
     
-    /* 2 Columns for Categories */
     .categories-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -1120,8 +1126,9 @@ footer {
         padding: 25px 15px;
     }
     
-    .category-icon {
-        font-size: 2.5em;
+    .category-icon-svg {
+        width: 70px;
+        height: 85px;
         margin-bottom: 10px;
     }
     
@@ -1135,7 +1142,6 @@ footer {
         display: none;
     }
     
-    /* 2 Columns for Steps */
     .steps-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -1168,7 +1174,6 @@ footer {
         font-size: 0.85em;
     }
     
-    /* Stats */
     .stats-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
@@ -1180,7 +1185,6 @@ footer {
         font-size: 0.9em;
     }
     
-    /* Products Grid - 2 Columns on Mobile */
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -1313,7 +1317,6 @@ footer {
         font-size: 0.95em;
     }
     
-    /* Search Bar Mobile */
     .search-container {
         margin-bottom: 20px;
         max-width: 100%;
@@ -1367,9 +1370,10 @@ footer {
     }
     
     .feature-icon,
-    .category-icon,
+    .category-icon-svg,
     .step-icon {
-        font-size: 2em;
+        width: 50px;
+        height: 60px;
     }
     
     .feature-card h3,
