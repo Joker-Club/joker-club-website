@@ -1,46 +1,71 @@
+// ================================
 // Age Verification
+// ================================
 function verifyAge(isAdult) {
+    const ageModal = document.getElementById('ageModal');
+
     if (isAdult) {
-        document.getElementById('ageModal').style.display = 'none';
+        if (ageModal) {
+            ageModal.style.display = 'none';
+        }
+
         localStorage.setItem('ageVerified', 'true');
     } else {
         window.location.href = 'https://www.google.com';
     }
 }
 
-// Check if already verified
-window.addEventListener('load', function() {
-    if (localStorage.getItem('ageVerified') === 'true') {
-        const ageModal = document.getElementById('ageModal');
-        if (ageModal) {
-            ageModal.style.display = 'none';
-        }
+
+// ================================
+// Page Initialization
+// ================================
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Age Verification
+    const ageModal = document.getElementById('ageModal');
+
+    if (ageModal && localStorage.getItem('ageVerified') === 'true') {
+        ageModal.style.display = 'none';
     }
-    
+
+    // Initialize website features
     animateStats();
     initFAQ();
     initMobileDropdown();
-    
+    initSmoothScroll();
+    initBranchesModal();
+
+    // Open category from URL hash
     const hash = window.location.hash.substring(1);
+
     if (hash) {
         const category = document.getElementById(hash);
-        if (category) {
+
+        if (category && category.classList.contains('product-category')) {
             showCategory(hash);
         }
     }
 });
 
-// Show Category Function
+
+// ================================
+// Show Product Category
+// ================================
 function showCategory(categoryId) {
+
     const allCategories = document.querySelectorAll('.product-category');
-    allCategories.forEach(function(cat) {
-        cat.style.display = 'none';
+
+    allCategories.forEach(function (category) {
+        category.style.display = 'none';
     });
 
     const selectedCategory = document.getElementById(categoryId);
-    if (selectedCategory) {
-        selectedCategory.style.display = 'block';
+
+    if (!selectedCategory) {
+        return;
     }
+
+    selectedCategory.style.display = 'block';
 
     const categoryNames = {
         'pod-devices': 'Pod Devices',
@@ -50,188 +75,385 @@ function showCategory(categoryId) {
     };
 
     const pageTitle = document.getElementById('page-title');
+
     if (pageTitle) {
         pageTitle.textContent = categoryNames[categoryId] || 'منتجاتنا';
     }
 
     const dropdown = document.getElementById('productsDropdown');
+
     if (dropdown) {
         dropdown.classList.remove('active');
     }
 
+    // Reset all searches whenever category changes
     clearAllSearches();
+
+    // Update URL without jumping the page
+    if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', '#' + categoryId);
+    }
 }
 
-// Search Products Function
+
+// ================================
+// Product Search
+// ================================
 function searchProducts(searchInputId, categoryId) {
+
     const searchInput = document.getElementById(searchInputId);
     const grid = document.getElementById('grid-' + categoryId);
-    
-    if (!searchInput || !grid) return;
-    
+
+    if (!searchInput || !grid) {
+        return;
+    }
+
     const products = grid.querySelectorAll('.product-card');
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    
+
+    const searchTerm = normalizeText(searchInput.value);
+
     let visibleCount = 0;
-    
-    products.forEach(function(product) {
-        const productName = product.getAttribute('data-name');
-        const productTitle = product.querySelector('h3') ? product.querySelector('h3').textContent.toLowerCase() : '';
-        const productBrand = product.querySelector('.product-brand') ? product.querySelector('.product-brand').textContent.toLowerCase() : '';
-        
-        if (productName.includes(searchTerm) || productTitle.includes(searchTerm) || productBrand.includes(searchTerm)) {
-            product.style.display = 'block';
+
+    products.forEach(function (product) {
+
+        const productName =
+            normalizeText(product.getAttribute('data-name') || '');
+
+        const titleElement = product.querySelector('h3');
+        const brandElement = product.querySelector('.product-brand');
+        const nicElement = product.querySelector('.product-nic');
+
+        const productTitle =
+            titleElement ? normalizeText(titleElement.textContent) : '';
+
+        const productBrand =
+            brandElement ? normalizeText(brandElement.textContent) : '';
+
+        const productNic =
+            nicElement ? normalizeText(nicElement.textContent) : '';
+
+        const matches =
+            searchTerm === '' ||
+            productName.includes(searchTerm) ||
+            productTitle.includes(searchTerm) ||
+            productBrand.includes(searchTerm) ||
+            productNic.includes(searchTerm);
+
+        if (matches) {
+            // Let CSS Grid decide the display type
+            product.style.display = '';
             visibleCount++;
         } else {
             product.style.display = 'none';
         }
     });
-    
-    const existingNoResults = grid.querySelector('.no-results');
-    if (existingNoResults) {
-        existingNoResults.remove();
+
+    // Remove old "no results" message
+    const oldMessage = grid.querySelector('.no-results');
+
+    if (oldMessage) {
+        oldMessage.remove();
     }
-    
+
+    // Show no-results message
     if (visibleCount === 0 && searchTerm !== '') {
+
         const noResults = document.createElement('div');
+
         noResults.className = 'no-results';
         noResults.textContent = '🔍 مفيش منتجات مطابقة للبحث';
+
         grid.appendChild(noResults);
     }
 }
 
+
+// ================================
+// Normalize Search Text
+// ================================
+function normalizeText(text) {
+
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, ' ');
+}
+
+
+// ================================
 // Clear All Searches
+// ================================
 function clearAllSearches() {
+
     const searchInputs = document.querySelectorAll('.search-input');
-    searchInputs.forEach(function(input) {
+
+    searchInputs.forEach(function (input) {
         input.value = '';
     });
-    
+
     const allProducts = document.querySelectorAll('.product-card');
-    allProducts.forEach(function(product) {
-        product.style.display = 'block';
+
+    allProducts.forEach(function (product) {
+        // Return to normal CSS display
+        product.style.display = '';
     });
-    
-    const noResultsMessages = document.querySelectorAll('.no-results');
-    noResultsMessages.forEach(function(msg) {
-        msg.remove();
+
+    const noResultsMessages =
+        document.querySelectorAll('.no-results');
+
+    noResultsMessages.forEach(function (message) {
+        message.remove();
     });
 }
 
+
+// ================================
 // Animate Statistics
+// ================================
 function animateStats() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    statNumbers.forEach(function(stat) {
-        const target = parseInt(stat.getAttribute('data-target'));
+
+    const statNumbers =
+        document.querySelectorAll('.stat-number');
+
+    if (!statNumbers.length) {
+        return;
+    }
+
+    statNumbers.forEach(function (stat) {
+
+        const targetValue =
+            parseInt(stat.getAttribute('data-target'), 10);
+
+        if (isNaN(targetValue)) {
+            return;
+        }
+
+        let started = false;
+
         const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-        
-        const updateStat = function() {
-            current += increment;
-            if (current < target) {
-                stat.textContent = Math.floor(current);
-                requestAnimationFrame(updateStat);
+
+        function updateStat(startTime) {
+
+            const elapsed = performance.now() - startTime;
+
+            const progress =
+                Math.min(elapsed / duration, 1);
+
+            const current =
+                Math.floor(progress * targetValue);
+
+            stat.textContent = current;
+
+            if (progress < 1) {
+                requestAnimationFrame(function () {
+                    updateStat(startTime);
+                });
             } else {
-                stat.textContent = target;
+                stat.textContent = targetValue;
             }
-        };
-        
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    updateStat();
-                    observer.unobserve(entry.target);
-                }
+        }
+
+        const observer =
+            new IntersectionObserver(function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting && !started) {
+
+                        started = true;
+
+                        requestAnimationFrame(function () {
+                            updateStat(performance.now());
+                        });
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+
+            }, {
+                threshold: 0.3
             });
-        });
-        
+
         observer.observe(stat);
     });
 }
 
-// FAQ Toggle
+
+// ================================
+// FAQ
+// ================================
 function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(function(item) {
-        const question = item.querySelector('.faq-question');
-        
-        if (question) {
-            question.addEventListener('click', function() {
-                const isActive = item.classList.contains('active');
-                
-                faqItems.forEach(function(faq) {
-                    faq.classList.remove('active');
-                });
-                
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
+
+    const faqItems =
+        document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(function (item) {
+
+        const question =
+            item.querySelector('.faq-question');
+
+        if (!question) {
+            return;
         }
+
+        question.addEventListener('click', function () {
+
+            const isActive =
+                item.classList.contains('active');
+
+            faqItems.forEach(function (faq) {
+                faq.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
     });
 }
 
-// Mobile Dropdown Toggle
+
+// ================================
+// Mobile Dropdown
+// ================================
 function initMobileDropdown() {
-    const dropdown = document.getElementById('productsDropdown');
-    const dropbtn = dropdown ? dropdown.querySelector('.dropbtn') : null;
-    
-    if (dropdown && dropbtn) {
-        dropbtn.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropdown.classList.toggle('active');
-            }
-        });
-        
-        document.addEventListener('click', function(e) {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('active');
-            }
-        });
-    }
-}
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#' || href === '#') return;
-        
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
+    const dropdown =
+        document.getElementById('productsDropdown');
+
+    if (!dropdown) {
+        return;
+    }
+
+    const dropbtn =
+        dropdown.querySelector('.dropbtn');
+
+    if (!dropbtn) {
+        return;
+    }
+
+    dropbtn.addEventListener('click', function (event) {
+
+        if (window.innerWidth <= 768) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            dropdown.classList.toggle('active');
         }
     });
-});
 
-// Branches Modal Functions
-function openBranchesModal() {
-    const modal = document.getElementById('branchesModal');
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
+    document.addEventListener('click', function (event) {
+
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
 }
+
+
+// ================================
+// Smooth Scroll
+// ================================
+function initSmoothScroll() {
+
+    const anchors =
+        document.querySelectorAll('a[href^="#"]');
+
+    anchors.forEach(function (anchor) {
+
+        anchor.addEventListener('click', function (event) {
+
+            const href =
+                this.getAttribute('href');
+
+            if (!href || href === '#') {
+                return;
+            }
+
+            let target;
+
+            try {
+                target = document.querySelector(href);
+            } catch (error) {
+                return;
+            }
+
+            if (!target) {
+                return;
+            }
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+}
+
+
+// ================================
+// Branches Modal
+// ================================
+function openBranchesModal() {
+
+    const modal =
+        document.getElementById('branchesModal');
+
+    if (!modal) {
+        return;
+    }
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
 
 function closeBranchesModal() {
-    const modal = document.getElementById('branchesModal');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+
+    const modal =
+        document.getElementById('branchesModal');
+
+    if (!modal) {
+        return;
     }
+
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
 }
 
-window.onclick = function(event) {
-    const modal = document.getElementById('branchesModal');
-    if (event.target == modal) {
-        closeBranchesModal();
+
+// Close modal when clicking outside
+function initBranchesModal() {
+
+    const modal =
+        document.getElementById('branchesModal');
+
+    if (!modal) {
+        return;
     }
+
+    modal.addEventListener('click', function (event) {
+
+        if (event.target === modal) {
+            closeBranchesModal();
+        }
+    });
 }
+
+
+// Close modal with ESC
+document.addEventListener('keydown', function (event) {
+
+    if (event.key === 'Escape') {
+
+        const modal =
+            document.getElementById('branchesModal');
+
+        if (modal && modal.style.display === 'flex') {
+            closeBranchesModal();
+        }
+    }
+});
