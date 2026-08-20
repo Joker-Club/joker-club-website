@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joker Club | Vape Store - Egypt's #1 Vape Shop</title>
+    <meta name="description" content="Joker Club - وجهتك الأولى لمنتجات الفيب الأصلية في مصر. 6 فروع، أفضل البراندات العالمية، أسعار منافسة">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -50,7 +51,7 @@
                 </div>
 
                 <div class="branch-card">
-                    <div class="branch-icon"></div>
+                    <div class="branch-icon">🏪</div>
                     <h3>اكتوبر</h3>
                     <p class="branch-address">المحور المركزي، الحصري، امام حلواني العبد</p>
                     <div class="branch-actions">
@@ -70,7 +71,7 @@
                 </div>
 
                 <div class="branch-card">
-                    <div class="branch-icon">🏪</div>
+                    <div class="branch-icon"></div>
                     <h3>فيصل</h3>
                     <p class="branch-address">٢٥١ محطة التعاون، امام البنزينة، بجوار فودافون</p>
                     <div class="branch-actions">
@@ -82,7 +83,7 @@
                 <div class="branch-card">
                     <div class="branch-icon">🏪</div>
                     <h3>الهرم</h3>
-                    <p class="branch-address">٧١ شارع خاتم المرسلين امام ستوديو الاهرام</p>
+                    <p class="branch-address">٧ شارع خاتم المرسلين امام ستوديو الاهرام</p>
                     <div class="branch-actions">
                         <a href="tel:01555121204" class="branch-btn call-btn"><i class="fas fa-phone"></i> اتصل بنا</a>
                         <a href="https://goo.gl/maps/tvuB16QXbtWNnM557" target="_blank" class="branch-btn map-btn"><i class="fas fa-map-marker-alt"></i> العنوان</a>
@@ -116,7 +117,8 @@
         <div class="hero-content">
             <h1>JOKER CLUB</h1>
             <p class="tagline">Be Unique, Be Joker 👑</p>
-            <p class="location"> زهراء المعادي - الشطر 13</p>
+            <p class="hero-subtitle">Authentic products • Multiple branches • Trusted service</p>
+            <p class="location">📍 زهراء المعادي - الشطر 13</p>
             <div class="hero-buttons">
                 <a href="products.html" class="cta-btn">شوف منتجاتنا</a>
                 <button onclick="openBranchesModal()" class="cta-btn branches-btn">
@@ -142,22 +144,22 @@
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">✅</div>
-                <h3>منتجات أصلية 100%</h3>
+                <h3>100% Authentic</h3>
                 <p>كل منتجاتنا أصلية ومضمونة من أفضل البراندات العالمية</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💰</div>
-                <h3>أسعار منافسة</h3>
+                <h3>Competitive Prices</h3>
                 <p>أفضل الأسعار في السوق المصري مع عروض مستمرة</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🏪</div>
-                <h3>6 فروع</h3>
+                <h3>6 Locations</h3>
                 <p>منتشرين في القاهرة والجيزة عشان نخدمك في أي مكان</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
-                <h3>خدمة سريعة</h3>
+                <h3>Professional Support</h3>
                 <p>فريق محترف جاهز يخدمك بسرعة واحترافية</p>
             </div>
         </div>
@@ -168,22 +170,49 @@
         <h2 class="section-title">تصفح الأقسام</h2>
         <div class="categories-grid">
             <a href="products.html#pod-devices" class="category-card">
-                <div class="category-icon">📱</div>
+                <svg viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" class="category-icon-svg">
+                    <rect x="35" y="5" width="30" height="20" rx="5" fill="#0a1929"/>
+                    <rect x="20" y="25" width="60" height="130" rx="15" fill="#0a1929"/>
+                    <circle cx="50" cy="60" r="10" fill="#ff6b00"/>
+                    <rect x="42" y="85" width="16" height="4" rx="2" fill="#ff6b00" opacity="0.5"/>
+                </svg>
                 <h3>Pod Devices</h3>
                 <p>أحدث أجهزة البود من أفضل البراندات</p>
             </a>
             <a href="products.html#liquids" class="category-card">
-                <div class="category-icon">🍺</div>
+                <svg viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" class="category-icon-svg">
+                    <rect x="42" y="5" width="16" height="15" rx="3" fill="#0a1929"/>
+                    <rect x="38" y="20" width="24" height="10" rx="2" fill="#0a1929"/>
+                    <path d="M 35 30 L 65 30 L 70 50 L 70 140 Q 70 155 50 155 Q 30 155 30 140 L 30 50 Z" fill="#0a1929"/>
+                    <ellipse cx="50" cy="100" rx="18" ry="25" fill="#ff6b00" opacity="0.3"/>
+                </svg>
                 <h3>Liquids</h3>
                 <p>نكهات عالمية متنوعة لجميع الأذواق</p>
             </a>
             <a href="products.html#tanks" class="category-card">
-                <div class="category-icon"></div>
+                <svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" class="category-icon-svg">
+                    <rect x="35" y="5" width="30" height="15" rx="3" fill="#0a1929"/>
+                    <rect x="30" y="20" width="40" height="10" rx="2" fill="#0a1929"/>
+                    <rect x="25" y="30" width="50" height="80" rx="5" fill="#0a1929"/>
+                    <rect x="25" y="30" width="50" height="80" rx="5" fill="#ff6b00" opacity="0.1"/>
+                    <rect x="30" y="110" width="40" height="10" rx="2" fill="#0a1929"/>
+                    <rect x="40" y="120" width="20" height="8" rx="2" fill="#0a1929"/>
+                    <path d="M 40 60 Q 50 55 60 60 L 60 90 Q 50 95 40 90 Z" fill="none" stroke="#0a1929" stroke-width="2"/>
+                    <circle cx="50" cy="75" r="5" fill="#ff6b00" opacity="0.5"/>
+                </svg>
                 <h3>Tanks</h3>
                 <p>تانكات احترافية للمحترفين</p>
             </a>
             <a href="products.html#full-kit" class="category-card">
-                <div class="category-icon">🎁</div>
+                <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" class="category-icon-svg">
+                    <rect x="20" y="80" width="90" height="70" rx="8" fill="#0a1929"/>
+                    <circle cx="50" cy="125" r="8" fill="#ff6b00"/>
+                    <rect x="95" y="40" width="40" height="50" rx="5" fill="#0a1929"/>
+                    <rect x="100" y="30" width="30" height="15" rx="3" fill="#0a1929"/>
+                    <rect x="105" y="20" width="20" height="12" rx="2" fill="#ff6b00" opacity="0.3"/>
+                    <rect x="115" y="95" width="8" height="30" rx="4" fill="#ff6b00"/>
+                    <path d="M 120 35 Q 125 25 130 20 Q 135 25 135 30" stroke="#0a1929" stroke-width="2" fill="none" opacity="0.5"/>
+                </svg>
                 <h3>Full Kits</h3>
                 <p>أطقم كاملة جاهزة للاستخدام</p>
             </a>
@@ -212,27 +241,27 @@
         </div>
     </section>
 
-    <!-- How to Order Section -->
+    <!-- How to Find Product Section -->
     <section class="how-to-order-section">
-        <h2 class="section-title">إزاي تطلب؟</h2>
+        <h2 class="section-title">إزاي تلاقي المنتج؟</h2>
         <div class="steps-container">
             <div class="step-card">
                 <div class="step-number">1</div>
                 <div class="step-icon"></div>
-                <h3>اختر المنتج</h3>
+                <h3>اختار المنتج</h3>
                 <p>تصفح منتجاتنا واختار اللي يناسبك</p>
             </div>
             <div class="step-card">
                 <div class="step-number">2</div>
-                <div class="step-icon"></div>
-                <h3>اضغط واتساب</h3>
-                <p>تواصل معانا مباشرة عبر واتساب</p>
+                <div class="step-icon">ℹ️</div>
+                <h3>اعرف التفاصيل</h3>
+                <p>شوف معلومات المنتج والبراند</p>
             </div>
             <div class="step-card">
                 <div class="step-number">3</div>
                 <div class="step-icon"></div>
-                <h3>استلم من الفرع</h3>
-                <p>استلم طلبك من أقرب فرع ليك</p>
+                <h3>زور أقرب فرع</h3>
+                <p>اختار الفرع الأقرب ليك واعرف مكانه</p>
             </div>
         </div>
     </section>
@@ -242,17 +271,6 @@
         <h2 class="section-title">البراندات اللي بنتعامل معاها</h2>
         <div class="brands-marquee">
             <div class="brands-track">
-                <div class="brand-item">Vaporesso</div>
-                <div class="brand-item">Voopoo</div>
-                <div class="brand-item">Aspire</div>
-                <div class="brand-item">OXVA</div>
-                <div class="brand-item">GeekVape</div>
-                <div class="brand-item">Uwell</div>
-                <div class="brand-item">Five Pawns</div>
-                <div class="brand-item">Vandy Vape</div>
-                <div class="brand-item">Yacht Vape</div>
-                <div class="brand-item">Wotofo</div>
-                <!-- Duplicate for seamless loop -->
                 <div class="brand-item">Vaporesso</div>
                 <div class="brand-item">Voopoo</div>
                 <div class="brand-item">Aspire</div>
@@ -324,12 +342,12 @@
             <p>📍 الشطر 13، عمارة 14، تحت الجيم - زهراء المعادي</p>
             <p>📱 0155-1036-733</p>
             <a href="https://wa.me/201226119761" class="whatsapp-btn" target="_blank">💬 واتساب</a>
-            <a href="https://instagram.com/jokerclub.vape" class="insta-btn" target="_blank"> إنستجرام</a>
+            <a href="https://instagram.com/jokerclub.vape" class="insta-btn" target="_blank">📷 إنستجرام</a>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 Joker Club. All Rights Reserved. 🔞 +18 Only</p>
+        <p>© 2026 Joker Club. All Rights Reserved.  +18 Only</p>
     </footer>
 
     <script src="script.js"></script>
