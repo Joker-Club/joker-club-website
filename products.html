@@ -1,235 +1,436 @@
-// Age Verification
-function verifyAge(isAdult) {
-    if (isAdult) {
-        document.getElementById('ageModal').style.display = 'none';
-        localStorage.setItem('ageVerified', 'true');
-    } else {
-        window.location.href = 'https://www.google.com';
-    }
-}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منتجاتنا | Joker Club</title>
+    <meta name="description" content="تصفح جميع منتجات Joker Club - Pod Devices, Liquids, Tanks, Full Kits">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
-// Check if already verified
-window.addEventListener('load', () => {
-    if (localStorage.getItem('ageVerified') === 'true') {
-        const ageModal = document.getElementById('ageModal');
-        if (ageModal) {
-            ageModal.style.display = 'none';
-        }
-    }
-    
-    animateStats();
-    initFAQ();
-    initMobileDropdown();
-    
-    const hash = window.location.hash.substring(1);
-    if (hash) {
-        const category = document.getElementById(hash);
-        if (category) {
-            showCategory(hash);
-        }
-    }
-});
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">JOKER CLUB</div>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li class="dropdown" id="productsDropdown">
+                <a href="#" class="dropbtn">المنتجات <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#pod-devices" onclick="showCategory('pod-devices'); return false;">Pod Devices</a>
+                    <a href="#liquids" onclick="showCategory('liquids'); return false;">Liquids</a>
+                    <a href="#tanks" onclick="showCategory('tanks'); return false;">Tanks</a>
+                    <a href="#full-kit" onclick="showCategory('full-kit'); return false;">Full Kit</a>
+                </div>
+            </li>
+            <li><a href="index.html#about">من نحن</a></li>
+            <li><a href="index.html#contact">تواصل معنا</a></li>
+        </ul>
+    </nav>
 
-// Show Category Function
-function showCategory(categoryId) {
-    const allCategories = document.querySelectorAll('.product-category');
-    allCategories.forEach(cat => {
-        cat.style.display = 'none';
-    });
+    <!-- Page Title -->
+    <div class="page-header">
+        <h1 id="page-title">اختر قسم المنتجات</h1>
+        <p>اختر القسم من القائمة فوق عشان تشوف المنتجات</p>
+    </div>
 
-    const selectedCategory = document.getElementById(categoryId);
-    if (selectedCategory) {
-        selectedCategory.style.display = 'block';
-    }
+    <!-- Products Section -->
+    <section id="products" class="products">
 
-    const categoryNames = {
-        'pod-devices': 'Pod Devices',
-        'liquids': 'Liquids',
-        'tanks': 'Tanks',
-        'full-kit': 'Full Kit'
-    };
-
-    const pageTitle = document.getElementById('page-title');
-    if (pageTitle) {
-        pageTitle.textContent = categoryNames[categoryId] || 'منتجاتنا';
-    }
-
-    const dropdown = document.getElementById('productsDropdown');
-    if (dropdown) {
-        dropdown.classList.remove('active');
-    }
-
-    clearAllSearches();
-}
-
-// Search Products Function
-function searchProducts(searchInputId, categoryId) {
-    const searchInput = document.getElementById(searchInputId);
-    const grid = document.getElementById('grid-' + categoryId);
-    
-    if (!searchInput || !grid) return;
-    
-    const products = grid.querySelectorAll('.product-card');
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    
-    let visibleCount = 0;
-    
-    products.forEach(product => {
-        const productName = product.getAttribute('data-name');
-        const productTitle = product.querySelector('h3') ? product.querySelector('h3').textContent.toLowerCase() : '';
-        const productBrand = product.querySelector('.product-brand') ? product.querySelector('.product-brand').textContent.toLowerCase() : '';
-        
-        if (productName.includes(searchTerm) || productTitle.includes(searchTerm) || productBrand.includes(searchTerm)) {
-            product.style.display = 'block';
-            visibleCount++;
-        } else {
-            product.style.display = 'none';
-        }
-    });
-    
-    const existingNoResults = grid.querySelector('.no-results');
-    if (existingNoResults) {
-        existingNoResults.remove();
-    }
-    
-    if (visibleCount === 0 && searchTerm !== '') {
-        const noResults = document.createElement('div');
-        noResults.className = 'no-results';
-        noResults.textContent = ' مفيش منتجات مطابقة للبحث';
-        grid.appendChild(noResults);
-    }
-}
-
-// Clear All Searches
-function clearAllSearches() {
-    const searchInputs = document.querySelectorAll('.search-input');
-    searchInputs.forEach(input => {
-        input.value = '';
-    });
-    
-    const allProducts = document.querySelectorAll('.product-card');
-    allProducts.forEach(product => {
-        product.style.display = 'block';
-    });
-    
-    const noResultsMessages = document.querySelectorAll('.no-results');
-    noResultsMessages.forEach(msg => msg.remove());
-}
-
-// Animate Statistics
-function animateStats() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    statNumbers.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-target'));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-        
-        const updateStat = () => {
-            current += increment;
-            if (current < target) {
-                stat.textContent = Math.floor(current);
-                requestAnimationFrame(updateStat);
-            } else {
-                stat.textContent = target;
-            }
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    updateStat();
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-        
-        observer.observe(stat);
-    });
-}
-
-// FAQ Toggle
-function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        if (question) {
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
+        <!-- Pod Devices Section -->
+        <div id="pod-devices" class="product-category" style="display: none;">
+            <h3 class="category-title">Pod Devices</h3>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="search-pods" placeholder="🔍 ابحث في Pod Devices..." onkeyup="searchProducts('search-pods', 'pod-devices')">
+            </div>
+            
+            <div class="products-grid" id="grid-pod-devices">
                 
-                faqItems.forEach(faq => {
-                    faq.classList.remove('active');
-                });
+                <div class="product-card liquid-card" data-name="xros 5 nano vaporesso">
+                    <div class="product-img-container">
+                        <img src="xros-pro-2.png" alt="XROS 5 Nano" class="product-image">
+                    </div>
+                    <h3>XROS 5 Nano</h3>
+                    <p class="product-brand">Vaporesso</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن XROS 5 Nano" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="xros 5 mini vaporesso">
+                    <div class="product-img-container">
+                        <img src="xros-5-nano.png" alt="XROS 5 Mini" class="product-image">
+                    </div>
+                    <h3>XROS 5 Mini</h3>
+                    <p class="product-brand">Vaporesso</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن XROS 5 Mini" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="xros pro 2 vaporesso">
+                    <div class="product-img-container">
+                        <img src="aspire-pixo-max.png" alt="XROS Pro 2" class="product-image">
+                    </div>
+                    <h3>XROS Pro 2</h3>
+                    <p class="product-brand">Vaporesso</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن XROS Pro 2" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="vipe se 2 vaporesso">
+                    <div class="product-img-container">
+                        <img src="xros-5-mini.png" alt="Vipe SE 2" class="product-image">
+                    </div>
+                    <h3>Vipe SE 2</h3>
+                    <p class="product-brand">Vaporesso</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Vipe SE 2" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="aspire pixo max aspire">
+                    <div class="product-img-container">
+                        <img src="vipe-se-2.png" alt="Aspire Pixo Max" class="product-image">
+                    </div>
+                    <h3>Aspire Pixo Max</h3>
+                    <p class="product-brand">Aspire</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Aspire Pixo Max" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="argus g4 voopoo">
+                    <div class="product-img-container">
+                        <img src="caliburn-g4-pro.png" alt="Argus G4" class="product-image">
+                    </div>
+                    <h3>Argus G4</h3>
+                    <p class="product-brand">Voopoo</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Argus G4" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="argus g4 mini voopoo">
+                    <div class="product-img-container">
+                        <img src="argus-g4.png" alt="Argus G4 Mini" class="product-image">
+                    </div>
+                    <h3>Argus G4 Mini</h3>
+                    <p class="product-brand">Voopoo</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Argus G4 Mini" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="xlim pro 3 oxva">
+                    <div class="product-img-container">
+                        <img src="xlim-ultra.png" alt="Xlim Pro 3" class="product-image">
+                    </div>
+                    <h3>Xlim Pro 3</h3>
+                    <p class="product-brand">OXVA</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Xlim Pro 3" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="xlim ultra oxva">
+                    <div class="product-img-container">
+                        <img src="xlim-pro-3.png" alt="Xlim Ultra" class="product-image">
+                    </div>
+                    <h3>Xlim Ultra</h3>
+                    <p class="product-brand">OXVA</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Xlim Ultra" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="caliburn g4 pro uwell">
+                    <div class="product-img-container">
+                        <img src="argus-g4-mini.png" alt="Caliburn G4 Pro" class="product-image">
+                    </div>
+                    <h3>Caliburn G4 Pro</h3>
+                    <p class="product-brand">Uwell</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Caliburn G4 Pro" class="order-btn whatsapp-order" target="_blank"> اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="aspire pixo kit aspire">
+                    <div class="product-img-container">
+                        <img src="aspire-pixo-kit.png" alt="Aspire Pixo Kit" class="product-image">
+                    </div>
+                    <h3>Aspire Pixo Kit</h3>
+                    <p class="product-brand">Aspire</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Aspire Pixo Kit" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="wenax q pro se geekvape">
+                    <div class="product-img-container">
+                        <img src="wenax-q-pro-se.png" alt="Wenax Q Pro SE" class="product-image">
+                    </div>
+                    <h3>Wenax Q Pro SE</h3>
+                    <p class="product-brand">GeekVape</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Wenax Q Pro SE" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Liquids Section -->
+        <div id="liquids" class="product-category" style="display: none;">
+            <h3 class="category-title">Liquids</h3>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="search-liquids" placeholder="🔍 ابحث في Liquids..." onkeyup="searchProducts('search-liquids', 'liquids')">
+            </div>
+            
+            <div class="products-grid" id="grid-liquids">
                 
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        }
-    });
-}
+                <div class="product-card liquid-card" data-name="whirling dervish five pawns vape renda nic 12">
+                    <div class="product-img-container">
+                        <img src="whirling-dervish.png" alt="Whirling Dervish" class="product-image">
+                    </div>
+                    <h3>Whirling Dervish</h3>
+                    <p class="product-brand">Five Pawns - Vape Renda</p>
+                    <p class="product-nic">12 NIC</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Whirling Dervish 12 NIC" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
 
-// Mobile Dropdown Toggle
-function initMobileDropdown() {
-    const dropdown = document.getElementById('productsDropdown');
-    const dropbtn = dropdown ? dropdown.querySelector('.dropbtn') : null;
-    
-    if (dropdown && dropbtn) {
-        dropbtn.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropdown.classList.toggle('active');
-            }
-        });
-        
-        document.addEventListener('click', function(e) {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('active');
-            }
-        });
-    }
-}
+                <div class="product-card liquid-card" data-name="go nuts five pawns vape renda nic 12">
+                    <div class="product-img-container">
+                        <img src="go-nuts.png" alt="Go Nuts" class="product-image">
+                    </div>
+                    <h3>Go Nuts</h3>
+                    <p class="product-brand">Five Pawns - Vape Renda</p>
+                    <p class="product-nic">12 NIC</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Go Nuts 12 NIC" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href === '#' || href === '#') return;
-        
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+                <div class="product-card liquid-card" data-name="banana pudding the plume room mg 12">
+                    <div class="product-img-container">
+                        <img src="banana-pudding.png" alt="Banana Pudding" class="product-image">
+                    </div>
+                    <h3>Banana Pudding</h3>
+                    <p class="product-brand">The Plume Room</p>
+                    <p class="product-nic">12 MG</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Banana Pudding 12MG" class="order-btn whatsapp-order" target="_blank"> اطلب عبر واتساب</a>
+                </div>
 
-// Branches Modal Functions
-function openBranchesModal() {
-    const modal = document.getElementById('branchesModal');
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-}
+                <div class="product-card liquid-card" data-name="royal tobacco havana five pawns nic 12">
+                    <div class="product-img-container">
+                        <img src="kingside-tobacco-burley.png" alt="Royal Tobacco Havana" class="product-image">
+                    </div>
+                    <h3>Royal Tobacco Havana</h3>
+                    <p class="product-brand">Five Pawns</p>
+                    <p class="product-nic">12 NIC</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Royal Tobacco Havana 12 NIC" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
 
-function closeBranchesModal() {
-    const modal = document.getElementById('branchesModal');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-}
+                <div class="product-card liquid-card" data-name="strawberries cream the plume room mg 12">
+                    <div class="product-img-container">
+                        <img src="salted-caramel.png" alt="Strawberries Cream" class="product-image">
+                    </div>
+                    <h3>Strawberries Cream</h3>
+                    <p class="product-brand">The Plume Room</p>
+                    <p class="product-nic">12 MG</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Strawberries Cream 12MG" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
 
-window.onclick = function(event) {
-    const modal = document.getElementById('branchesModal');
-    if (event.target == modal) {
-        closeBranchesModal();
-    }
-}
+                <div class="product-card liquid-card" data-name="salted caramel district one 2 nic 12">
+                    <div class="product-img-container">
+                        <img src="symmetry-six.png" alt="Salted Caramel" class="product-image">
+                    </div>
+                    <h3>Salted Caramel</h3>
+                    <p class="product-brand">District One 2</p>
+                    <p class="product-nic">12 NIC</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Salted Caramel 12 NIC" class="order-btn whatsapp-order" target="_blank"> اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="symmetry six five pawns mg 12">
+                    <div class="product-img-container">
+                        <img src="strawberries-cream.png" alt="Symmetry Six" class="product-image">
+                    </div>
+                    <h3>Symmetry Six</h3>
+                    <p class="product-brand">Five Pawns</p>
+                    <p class="product-nic">12 MG</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Symmetry Six 12MG" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="kingside tobacco burley five pawns nic 12">
+                    <div class="product-img-container">
+                        <img src="royal-tobacco-havana.png" alt="Kingside Tobacco Burley" class="product-image">
+                    </div>
+                    <h3>Kingside Tobacco Burley</h3>
+                    <p class="product-brand">Five Pawns</p>
+                    <p class="product-nic">12 NIC</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Kingside Tobacco Burley 12 NIC" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="gambit five pawns mg 12">
+                    <div class="product-img-container">
+                        <img src="gambit.png" alt="Gambit" class="product-image">
+                    </div>
+                    <h3>Gambit</h3>
+                    <p class="product-brand">Five Pawns</p>
+                    <p class="product-nic">12 MG</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Gambit 12MG" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="dillinger villain vapors nic 12">
+                    <div class="product-img-container">
+                        <img src="dillinger.png" alt="Dillinger" class="product-image">
+                    </div>
+                    <h3>Dillinger</h3>
+                    <p class="product-brand">Villain Vapors</p>
+                    <p class="product-nic">12 NIC</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أطلب Dillinger 12 NIC" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tanks Section -->
+        <div id="tanks" class="product-category" style="display: none;">
+            <h3 class="category-title">Tanks</h3>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="search-tanks" placeholder="🔍 ابحث في Tanks..." onkeyup="searchProducts('search-tanks', 'tanks')">
+            </div>
+            
+            <div class="products-grid" id="grid-tanks">
+                
+                <div class="product-card liquid-card" data-name="pandora rta v2 yacht vape">
+                    <div class="product-img-container">
+                        <img src="kylin-mesh.png" alt="Pandora RTA V2" class="product-image">
+                    </div>
+                    <h3>Pandora RTA V2</h3>
+                    <p class="product-brand">Yacht Vape</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Pandora RTA V2" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="pyro v4 rdta vandy vape">
+                    <div class="product-img-container">
+                        <img src="kylin-mini-v2.png" alt="Pyro V4 RDTA" class="product-image">
+                    </div>
+                    <h3>Pyro V4 RDTA</h3>
+                    <p class="product-brand">Vandy Vape</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Pyro V4 RDTA" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="kylin mini v2 vandy vape">
+                    <div class="product-img-container">
+                        <img src="zeus-x2-mesh.png" alt="Kylin Mini V2" class="product-image">
+                    </div>
+                    <h3>Kylin Mini V2</h3>
+                    <p class="product-brand">Vandy Vape</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Kylin Mini V2" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="kylin mesh vandy vape">
+                    <div class="product-img-container">
+                        <img src="pyro-v4-rdta.png" alt="Kylin Mesh" class="product-image">
+                    </div>
+                    <h3>Kylin Mesh</h3>
+                    <p class="product-brand">Vandy Vape</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Kylin Mesh" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="zeus x2 mesh geekvape">
+                    <div class="product-img-container">
+                        <img src="pandora-rta-v2.png" alt="Zeus X2 Mesh" class="product-image">
+                    </div>
+                    <h3>Zeus X2 Mesh</h3>
+                    <p class="product-brand">GeekVape</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Zeus X2 Mesh" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="glaz mini steam crave">
+                    <div class="product-img-container">
+                        <img src="glaz-mini.png" alt="Glaz Mini" class="product-image">
+                    </div>
+                    <h3>Glaz Mini</h3>
+                    <p class="product-brand">Steam Crave</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Glaz Mini" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="gear v2 wotofo">
+                    <div class="product-img-container">
+                        <img src="kylin-m-pro.png" alt="Gear V2" class="product-image">
+                    </div>
+                    <h3>Gear V2</h3>
+                    <p class="product-brand">Wotofo</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Gear V2" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="kylin m pro vandy vape">
+                    <div class="product-img-container">
+                        <img src="brunhilde-dl.png" alt="Kylin M Pro" class="product-image">
+                    </div>
+                    <h3>Kylin M Pro</h3>
+                    <p class="product-brand">Vandy Vape</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Kylin M Pro" class="order-btn whatsapp-order" target="_blank"> اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="blotto 1.5 dovpo">
+                    <div class="product-img-container">
+                        <img src="gear-v2.png" alt="Blotto 1.5" class="product-image">
+                    </div>
+                    <h3>Blotto 1.5</h3>
+                    <p class="product-brand">Dovpo</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Blotto 1.5" class="order-btn whatsapp-order" target="_blank"> اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="brunhilde dl vapefly">
+                    <div class="product-img-container">
+                        <img src="blotto-1.5.png" alt="Brunhilde DL" class="product-image">
+                    </div>
+                    <h3>Brunhilde DL</h3>
+                    <p class="product-brand">Vapefly</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Brunhilde DL" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Full Kit Section -->
+        <div id="full-kit" class="product-category" style="display: none;">
+            <h3 class="category-title">Full Kit</h3>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="search-kits" placeholder="🔍 ابحث في Full Kits..." onkeyup="searchProducts('search-kits', 'full-kit')">
+            </div>
+            
+            <div class="products-grid" id="grid-full-kit">
+                
+                <div class="product-card liquid-card" data-name="armour max kit vaporesso">
+                    <div class="product-img-container">
+                        <img src="drag-5-kit.png" alt="Armour Max Kit" class="product-image">
+                    </div>
+                    <h3>Armour Max Kit</h3>
+                    <p class="product-brand">Vaporesso</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Armour Max Kit" class="order-btn whatsapp-order" target="_blank"> اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="drag 5 kit voopoo">
+                    <div class="product-img-container">
+                        <img src="armour-max-kit.png" alt="Drag 5 Kit" class="product-image">
+                    </div>
+                    <h3>Drag 5 Kit</h3>
+                    <p class="product-brand">Voopoo</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Drag 5 Kit" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="drag m100 s kit voopoo">
+                    <div class="product-img-container">
+                        <img src="drag-m100-s-kit.png" alt="Drag M100 S Kit" class="product-image">
+                    </div>
+                    <h3>Drag M100 S Kit</h3>
+                    <p class="product-brand">Voopoo</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Drag M100 S Kit" class="order-btn whatsapp-order" target="_blank"> اطلب عبر واتساب</a>
+                </div>
+
+                <div class="product-card liquid-card" data-name="vinci spark 220 kit voopoo">
+                    <div class="product-img-container">
+                        <img src="vinci-spark-220-kit.png" alt="Vinci Spark 220 Kit" class="product-image">
+                    </div>
+                    <h3>Vinci Spark 220 Kit</h3>
+                    <p class="product-brand">Voopoo</p>
+                    <a href="https://wa.me/201226119761?text=مرحبا، عايز أستفسر عن Vinci Spark 220 Kit" class="order-btn whatsapp-order" target="_blank">💬 اطلب عبر واتساب</a>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Joker Club. All Rights Reserved. 🔞 +18 Only</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
