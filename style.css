@@ -833,12 +833,173 @@ footer {
     border-top: 3px solid #ffffff;
 }
 
+/* Products Page */
+.page-header {
+    background: #0a1929;
+    color: #ffffff;
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+
+.page-header h1 {
+    font-size: 2.5em;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: #8892a0;
+    font-size: 1.1em;
+}
+
+.products {
+    padding: 80px 50px;
+    background: #ffffff;
+}
+
+.category-title {
+    font-size: 2em;
+    color: #0a1929;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #0a1929;
+    font-weight: 900;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: #0a1929;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid #0a1929;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(10, 25, 41, 0.3);
+}
+
+.product-img {
+    font-size: 4em;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.price {
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.order-btn {
+    background: #ffffff;
+    color: #0a1929;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.3s;
+    border: 2px solid #ffffff;
+}
+
+.order-btn:hover {
+    transform: scale(1.05);
+    background: #0a1929;
+    color: #ffffff;
+}
+
+.liquid-card {
+    background: #ffffff;
+    border: 2px solid #0a1929;
+    padding: 20px;
+}
+
+.liquid-card h3 {
+    color: #0a1929;
+    font-size: 1.4em;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.product-img-container {
+    width: 100%;
+    height: 300px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+}
+
+.product-brand {
+    color: #8892a0;
+    font-size: 0.95em;
+    margin-bottom: 5px;
+}
+
+.product-nic {
+    color: #0a1929;
+    font-weight: 900;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    background: #ff6b00;
+    color: white;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.whatsapp-order {
+    background: #25D366;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    display: block;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.whatsapp-order:hover {
+    transform: scale(1.05);
+    background: #128C7E;
+}
+
 /* Responsive - Tablet */
 @media (max-width: 1024px) and (min-width: 769px) {
     .hero-content h1 { font-size: 4em; }
     .navbar { padding: 20px 30px; }
     .nav-links { gap: 20px; }
-    .features-section, .categories-section, .how-to-order-section, .about, .contact { padding: 60px 30px; }
+    .features-section, .categories-section, .how-to-order-section, .about, .contact, .products { padding: 60px 30px; }
     .section-title { font-size: 2em; }
 }
 
@@ -878,8 +1039,8 @@ footer {
         text-align: center;
     }
     
-    .features-section, .categories-section, .how-to-order-section, .about, .contact { 
-        padding: 40px 20px; 
+    .features-section, .categories-section, .how-to-order-section, .about, .contact, .products { 
+        padding: 40px 15px; 
     }
     .section-title { 
         font-size: 1.8em; 
@@ -980,6 +1141,55 @@ footer {
         font-size: 0.9em;
     }
     
+    /* Products Grid - 2 Columns on Mobile */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .product-card {
+        padding: 12px;
+    }
+    
+    .liquid-card {
+        padding: 12px;
+    }
+    
+    .product-img-container {
+        height: 150px;
+    }
+    
+    .product-image {
+        max-height: 140px;
+    }
+    
+    .liquid-card h3 {
+        font-size: 0.9em;
+        margin-top: 8px;
+        margin-bottom: 3px;
+    }
+    
+    .product-brand {
+        font-size: 0.75em;
+        margin-bottom: 3px;
+    }
+    
+    .product-nic {
+        font-size: 0.8em;
+        padding: 3px 8px;
+        margin-bottom: 8px;
+    }
+    
+    .whatsapp-order {
+        padding: 8px 10px;
+        font-size: 0.75em;
+        border-radius: 15px;
+    }
+    
+    .category-title {
+        font-size: 1.4em;
+    }
+    
     .tagline { font-size: 1.1em; }
     .location { font-size: 0.95em; }
     .cta-btn { 
@@ -1051,6 +1261,18 @@ footer {
         width: 90%; 
         max-width: 300px; 
     }
+    
+    .page-header {
+        padding: 40px 20px 30px;
+    }
+    
+    .page-header h1 {
+        font-size: 1.8em;
+    }
+    
+    .page-header p {
+        font-size: 0.95em;
+    }
 }
 
 /* Responsive - Small Mobile */
@@ -1071,15 +1293,21 @@ footer {
     
     .features-grid,
     .categories-grid,
-    .steps-container {
+    .steps-container,
+    .products-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 10px;
     }
     
     .feature-card,
     .category-card,
-    .step-card {
-        padding: 20px 10px;
+    .step-card,
+    .product-card {
+        padding: 15px 8px;
+    }
+    
+    .liquid-card {
+        padding: 10px 8px;
     }
     
     .feature-icon,
@@ -1092,5 +1320,39 @@ footer {
     .category-card h3,
     .step-card h3 {
         font-size: 0.9em;
+    }
+    
+    .product-img-container {
+        height: 120px;
+    }
+    
+    .product-image {
+        max-height: 110px;
+    }
+    
+    .liquid-card h3 {
+        font-size: 0.8em;
+    }
+    
+    .product-brand {
+        font-size: 0.7em;
+    }
+    
+    .product-nic {
+        font-size: 0.7em;
+        padding: 2px 6px;
+    }
+    
+    .whatsapp-order {
+        padding: 6px 8px;
+        font-size: 0.7em;
+    }
+    
+    .category-title {
+        font-size: 1.2em;
+    }
+    
+    .page-header h1 {
+        font-size: 1.5em;
     }
 }
